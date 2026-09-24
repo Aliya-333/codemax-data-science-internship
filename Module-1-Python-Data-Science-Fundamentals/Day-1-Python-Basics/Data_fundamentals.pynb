@@ -1,0 +1,752 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1de6fac3-8632-469d-8c23-5f6ce6fab1ff",
+   "metadata": {},
+   "source": [
+    "# Day 4 - Data Science Fundamentals\n",
+    "\n",
+    "## Topics Covered\n",
+    "- Introduction to NumPy\n",
+    "- NumPy Arrays\n",
+    "- Basic NumPy Operations\n",
+    "- Introduction to Pandas\n",
+    "- Series and DataFrames\n",
+    "- Reading and Exploring Data\n",
+    "- Filtering Data\n",
+    "- Basic Statistical Analysis\n",
+    "- Mini Data Analysis Project"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "4b274779-7cfa-42aa-82de-a0136f03f238",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Marks: [85 90 78 92 88]\n",
+      "Data Type: <class 'numpy.ndarray'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "marks = np.array([85, 90, 78, 92, 88])\n",
+    "\n",
+    "print(\"Marks:\", marks)\n",
+    "print(\"Data Type:\", type(marks))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "e8498d6b-d1c3-4bc4-ba3c-eedcd76ef119",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total: 433\n",
+      "Average: 86.6\n",
+      "Highest: 92\n",
+      "Lowest: 78\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "marks = np.array([85, 90, 78, 92, 88])\n",
+    "\n",
+    "print(\"Total:\", np.sum(marks))\n",
+    "print(\"Average:\", np.mean(marks))\n",
+    "print(\"Highest:\", np.max(marks))\n",
+    "print(\"Lowest:\", np.min(marks))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "aefcf299-a2e6-493c-ac4e-d9aa5205539a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original: [10 20 30 40 50]\n",
+      "Add 10: [20 30 40 50 60]\n",
+      "Multiply by 2: [ 20  40  60  80 100]\n",
+      "Divide by 2: [ 5. 10. 15. 20. 25.]\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "numbers = np.array([10, 20, 30, 40, 50])\n",
+    "\n",
+    "print(\"Original:\", numbers)\n",
+    "print(\"Add 10:\", numbers + 10)\n",
+    "print(\"Multiply by 2:\", numbers * 2)\n",
+    "print(\"Divide by 2:\", numbers / 2)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "755091db-86ab-43ba-9bfe-b79f7833857d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0    85\n",
+      "1    90\n",
+      "2    78\n",
+      "3    92\n",
+      "4    88\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "marks = pd.Series([85, 90, 78, 92, 88])\n",
+    "\n",
+    "print(marks)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "45ab5872-9c2d-4e10-b397-17069d9ba011",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course\n",
+      "0   Arun     85    BCA\n",
+      "1    Anu     92    BCA\n",
+      "2  Rahul     76   BCom\n",
+      "3  Meera     88    BCA\n",
+      "4  Akhil     95   BCom\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "data = {\n",
+    "    \"Name\": [\"Arun\", \"Anu\", \"Rahul\", \"Meera\", \"Akhil\"],\n",
+    "    \"Marks\": [85, 92, 76, 88, 95],\n",
+    "    \"Course\": [\"BCA\", \"BCA\", \"BCom\", \"BCA\", \"BCom\"]\n",
+    "}\n",
+    "\n",
+    "df = pd.DataFrame(data)\n",
+    "\n",
+    "print(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "5fe818f4-26a5-45c1-a522-e29f980bde48",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course\n",
+      "0   Arun     85    BCA\n",
+      "1    Anu     92    BCA\n",
+      "2  Rahul     76   BCom\n",
+      "3  Meera     88    BCA\n",
+      "4  Akhil     95   BCom\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df.head())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "306c278b-3902-4b9e-a930-4a9651b289a7",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(5, 3)"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "55b91eaf-cbd3-4694-9328-1d6cc3152b2c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Index(['Name', 'Marks', 'Course'], dtype='str')"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.columns\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "a5367d95-ec38-4b06-8306-38f2f1b7eed4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.DataFrame'>\n",
+      "RangeIndex: 5 entries, 0 to 4\n",
+      "Data columns (total 3 columns):\n",
+      " #   Column  Non-Null Count  Dtype\n",
+      "---  ------  --------------  -----\n",
+      " 0   Name    5 non-null      str  \n",
+      " 1   Marks   5 non-null      int64\n",
+      " 2   Course  5 non-null      str  \n",
+      "dtypes: int64(1), str(2)\n",
+      "memory usage: 291.0 bytes\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ccd1f284-a781-4376-812c-a4ac4762fdf8",
+   "metadata": {},
+   "source": [
+    "df.head()     → shows first rows\n",
+    "\n",
+    "df.shape      → number of rows and columns\n",
+    "\n",
+    "df.columns    → column names\n",
+    "\n",
+    "df.info()     → information about the dataset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "9177a8ae-e207-4b5e-ae39-00e06300c0a7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Average Marks: 87.2\n",
+      "Highest Marks: 95\n",
+      "Lowest Marks: 76\n",
+      "Total Marks: 436\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Average Marks:\", df[\"Marks\"].mean())\n",
+    "\n",
+    "print(\"Highest Marks:\", df[\"Marks\"].max())\n",
+    "\n",
+    "print(\"Lowest Marks:\", df[\"Marks\"].min())\n",
+    "\n",
+    "print(\"Total Marks:\", df[\"Marks\"].sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "9de00b1b-2ca5-4137-8b79-a1eba98f9ee3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course\n",
+      "1    Anu     92    BCA\n",
+      "3  Meera     88    BCA\n",
+      "4  Akhil     95   BCom\n"
+     ]
+    }
+   ],
+   "source": [
+    "high_scores = df[df[\"Marks\"] > 85]\n",
+    "\n",
+    "print(high_scores)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "29c14225-34dc-4292-b90c-c11e6a248539",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course\n",
+      "0   Arun     85    BCA\n",
+      "1    Anu     92    BCA\n",
+      "3  Meera     88    BCA\n"
+     ]
+    }
+   ],
+   "source": [
+    "bca_students = df[df[\"Course\"] == \"BCA\"]\n",
+    "\n",
+    "print(bca_students)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "cf796654-a695-4bba-829d-25f441a14b82",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course Result\n",
+      "0   Arun     85    BCA   Pass\n",
+      "1    Anu     92    BCA   Pass\n",
+      "2  Rahul     76   BCom   Pass\n",
+      "3  Meera     88    BCA   Pass\n",
+      "4  Akhil     95   BCom   Pass\n"
+     ]
+    }
+   ],
+   "source": [
+    "df[\"Result\"] = [\"Pass\", \"Pass\", \"Pass\", \"Pass\", \"Pass\"]\n",
+    "\n",
+    "print(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "f03b53bc-6934-4243-93ac-97bba92cf206",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course Result\n",
+      "0   Arun     85    BCA   Pass\n",
+      "1    Anu     92    BCA   Pass\n",
+      "2  Rahul     76   BCom   Pass\n",
+      "3  Meera     88    BCA   Pass\n",
+      "4  Akhil     95   BCom   Pass\n"
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "df[\"Result\"] = np.where(df[\"Marks\"] >= 40, \"Pass\", \"Fail\")\n",
+    "\n",
+    "print(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "792dedcd-66e7-4e1e-afec-60c3594ea660",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name  Marks Course\n",
+      "0   Arun   85.0    BCA\n",
+      "1    Anu    NaN    BCA\n",
+      "2  Rahul   76.0   BCom\n",
+      "3  Meera   90.0    BCA\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "\n",
+    "data = {\n",
+    "    \"Name\": [\"Arun\", \"Anu\", \"Rahul\", \"Meera\"],\n",
+    "    \"Marks\": [85, np.nan, 76, 90],\n",
+    "    \"Course\": [\"BCA\", \"BCA\", \"BCom\", \"BCA\"]\n",
+    "}\n",
+    "\n",
+    "df_missing = pd.DataFrame(data)\n",
+    "\n",
+    "print(df_missing)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "6e6c0208-a441-472a-8583-7b177a4f4eb2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Name      0\n",
+      "Marks     1\n",
+      "Course    0\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_missing.isnull().sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "cf648ab2-e27e-46d0-871a-da7725e6cc54",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Name      Marks Course\n",
+      "0   Arun  85.000000    BCA\n",
+      "1    Anu  83.666667    BCA\n",
+      "2  Rahul  76.000000   BCom\n",
+      "3  Meera  90.000000    BCA\n"
+     ]
+    }
+   ],
+   "source": [
+    "average = df_missing[\"Marks\"].mean()\n",
+    "\n",
+    "df_missing[\"Marks\"] = df_missing[\"Marks\"].fillna(average)\n",
+    "\n",
+    "print(df_missing)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a782c5ae-61fc-48d5-9486-ebf4e251fd47",
+   "metadata": {},
+   "source": [
+    "Day 5 Mini Project: Student Performance Analysis"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "b3ba1ad5-bae2-4af5-aef1-54921e468c83",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "     Name  Python  Statistics  SQL\n",
+      "0    Arun      85          80   90\n",
+      "1     Anu      92          89   94\n",
+      "2   Rahul      70          75   68\n",
+      "3   Meera      88          91   85\n",
+      "4   Akhil      95          90   92\n",
+      "5    Neha      65          72   70\n",
+      "6  Vishnu      78          82   80\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "data = {\n",
+    "    \"Name\": [\n",
+    "        \"Arun\",\n",
+    "        \"Anu\",\n",
+    "        \"Rahul\",\n",
+    "        \"Meera\",\n",
+    "        \"Akhil\",\n",
+    "        \"Neha\",\n",
+    "        \"Vishnu\"\n",
+    "    ],\n",
+    "\n",
+    "    \"Python\": [85, 92, 70, 88, 95, 65, 78],\n",
+    "\n",
+    "    \"Statistics\": [80, 89, 75, 91, 90, 72, 82],\n",
+    "\n",
+    "    \"SQL\": [90, 94, 68, 85, 92, 70, 80]\n",
+    "}\n",
+    "\n",
+    "df = pd.DataFrame(data)\n",
+    "\n",
+    "print(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "4f1b5fae-0068-4c94-a41d-a35c1a270b87",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df[\"Total\"] = df[\"Python\"] + df[\"Statistics\"] + df[\"SQL\"]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "a204b4ef-1348-445c-96d0-9ba07f490d59",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df[\"Average\"] = df[\"Total\"] / 3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "a8108c6d-9373-4d95-a367-77bb5a0e4c82",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "     Name  Python  Statistics  SQL  Total    Average\n",
+      "0    Arun      85          80   90    255  85.000000\n",
+      "1     Anu      92          89   94    275  91.666667\n",
+      "2   Rahul      70          75   68    213  71.000000\n",
+      "3   Meera      88          91   85    264  88.000000\n",
+      "4   Akhil      95          90   92    277  92.333333\n",
+      "5    Neha      65          72   70    207  69.000000\n",
+      "6  Vishnu      78          82   80    240  80.000000\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "2b48c37d-94b8-4350-be60-ae88d28681e5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Class Average: 82.42857142857143\n"
+     ]
+    }
+   ],
+   "source": [
+    "class_average = df[\"Average\"].mean()\n",
+    "\n",
+    "print(\"Class Average:\", class_average)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "0082b6b5-c78a-428e-b27b-80fe68fed033",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Highest Average: 92.33333333333333\n"
+     ]
+    }
+   ],
+   "source": [
+    "# HIGHEST PERFORMING STUDENT\n",
+    "highest = df[\"Average\"].max()\n",
+    "\n",
+    "print(\"Highest Average:\", highest)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "c580edd0-c76e-4de8-bf25-3a6e082d51d4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "Top Student:\n",
+      "Name              Akhil\n",
+      "Python               95\n",
+      "Statistics           90\n",
+      "SQL                  92\n",
+      "Total               277\n",
+      "Average       92.333333\n",
+      "Name: 4, dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "# TO GET THE FULL ROW\n",
+    "top_student = df.loc[df[\"Average\"].idxmax()]\n",
+    "\n",
+    "print(\"\\nTop Student:\")\n",
+    "print(top_student)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "9fded1d6-c968-4250-a955-3c344d012b5f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "Students with average above 80:\n",
+      "    Name  Python  Statistics  SQL  Total    Average\n",
+      "0   Arun      85          80   90    255  85.000000\n",
+      "1    Anu      92          89   94    275  91.666667\n",
+      "3  Meera      88          91   85    264  88.000000\n",
+      "4  Akhil      95          90   92    277  92.333333\n"
+     ]
+    }
+   ],
+   "source": [
+    "# STUDENTS WITH AVG ABOVE 80\n",
+    "above_80 = df[df[\"Average\"] > 80]\n",
+    "\n",
+    "print(\"\\nStudents with average above 80:\")\n",
+    "print(above_80)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "360a4038-edda-4196-b71d-f3640357de1f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "     Name  Python  Statistics  SQL  Total    Average\n",
+      "4   Akhil      95          90   92    277  92.333333\n",
+      "1     Anu      92          89   94    275  91.666667\n",
+      "3   Meera      88          91   85    264  88.000000\n",
+      "0    Arun      85          80   90    255  85.000000\n",
+      "6  Vishnu      78          82   80    240  80.000000\n",
+      "2   Rahul      70          75   68    213  71.000000\n",
+      "5    Neha      65          72   70    207  69.000000\n"
+     ]
+    }
+   ],
+   "source": [
+    "# SORT STUDENTS BY PERFORMANCE\n",
+    "sorted_df = df.sort_values(by=\"Average\", ascending=False)\n",
+    "\n",
+    "print(sorted_df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "b14462bc-e57d-4240-b90f-fcb96f1ff2e5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dataset saved successfully!\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.to_csv(\"student_performance.csv\", index=False)\n",
+    "\n",
+    "print(\"Dataset saved successfully!\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ed32f7d3-f5e3-4796-aade-d909ee12aeba",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "   "
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
