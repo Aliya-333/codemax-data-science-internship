@@ -1,1 +1,343 @@
+# 🎓 Student Academic Survival & Dropout Prediction
+
+## 📌 Project Overview
+
+This project was developed as my **Module 6 Final Data Science Project**.
+
+The project analyzes longitudinal student academic data to identify patterns associated with student academic performance and the `Target_Dropout_Next_Sem` variable.
+
+The project follows an end-to-end Data Science workflow including:
+
+- Data Cleaning
+- Exploratory Data Analysis (EDA)
+- Data Visualization
+- Feature Preparation
+- Categorical Encoding
+- Train-Test Splitting
+- Machine Learning
+- Model Evaluation
+- Model Comparison
+- Feature Importance Analysis
+
+---
+
+## 🎯 Project Objective
+
+The main objectives of this project are:
+
+- Analyze academic, financial, workload, and engagement-related student features.
+- Identify patterns associated with the dropout target.
+- Build Machine Learning models to predict `Target_Dropout_Next_Sem`.
+- Compare different classification models.
+- Identify the most important features used by the model.
+
+---
+
+## 📊 Dataset
+
+The dataset contains:
+
+- **79,239 semester-level records**
+- **20,000 unique students**
+- Multiple semester records for individual students
+
+### Target Distribution
+
+- **Class 0:** 72,322 records — approximately 91.27%
+- **Class 1:** 6,917 records — approximately 8.73%
+
+The target variable is therefore **imbalanced**.
+
+Because the dataset contains multiple semester records for the same students, `Student_ID` was used as a grouping variable during the train-test split.
+
+This prevents records belonging to the same student from appearing in both the training and testing datasets.
+
+> **Dataset Source:** Add the original dataset/Kaggle link here.
+
+---
+
+## 🔄 Project Workflow
+
+1. Dataset Loading and Inspection
+2. Data Cleaning
+3. Missing Value Treatment
+4. Duplicate Checking
+5. Target Variable Analysis
+6. Exploratory Data Analysis
+7. Data Visualization
+8. Feature and Target Selection
+9. Categorical Data Cleaning
+10. One-Hot Encoding
+11. Group-Based Train-Test Split
+12. Logistic Regression
+13. Random Forest Classification
+14. Model Evaluation
+15. Model Comparison
+16. Feature Importance Analysis
+17. Final Results and Conclusion
+
+---
+
+## 🧹 Data Cleaning
+
+Missing values were identified in:
+
+- `Family_Income`
+- `LMS_Logins`
+
+These missing values were handled using **median imputation**.
+
+The `Gender` column also contained inconsistent categories such as:
+
+- `Female`
+- `female`
+- `F`
+- `Male`
+- `male`
+- `M`
+
+These values were standardized before Machine Learning.
+
+---
+
+## 🔍 Exploratory Data Analysis
+
+EDA was performed to understand the relationships between student characteristics and the target variable.
+
+The analysis showed differences between the target classes in variables such as:
+
+- Semester GPA
+- Financial Stress
+- Failed Courses
+- Work Hours
+- Attendance
+- LMS Logins
+- Scholarship Status
+- First-Generation Status
+
+For example, class-1 records had a lower average semester GPA and higher average financial stress, failed courses, and work hours than class-0 records.
+
+These findings represent **associations in the dataset and do not establish causation**.
+
+---
+
+## ⚙️ Feature Preparation
+
+The following columns were excluded from the Machine Learning input features:
+
+- `Student_ID`
+- `Target_Dropout_Next_Sem`
+- `End_of_Semester_Status`
+- `Censored`
+
+`Student_ID` was excluded as an identifier.
+
+Potential outcome-related variables were also excluded to reduce the risk of data leakage.
+
+The categorical features were:
+
+- `Gender`
+- `Housing_Status`
+
+These were converted into numerical features using **One-Hot Encoding**.
+
+---
+
+## 🔀 Group-Based Train-Test Split
+
+The dataset contains repeated semester records for individual students.
+
+A normal random row-based split could place records belonging to the same student in both training and testing data.
+
+To avoid this problem, a **GroupShuffleSplit** was performed using `Student_ID`.
+
+This ensured that the same student did not appear in both datasets.
+
+The resulting target distributions were approximately:
+
+**Training Data**
+- Class 0: 91.33%
+- Class 1: 8.67%
+
+**Testing Data**
+- Class 0: 91.04%
+- Class 1: 8.96%
+
+---
+
+# 🤖 Machine Learning Models
+
+Two classification models were trained and evaluated:
+
+### 1. Logistic Regression
+
+A Logistic Regression model was trained using balanced class weights because of the imbalance in the target variable.
+
+### 2. Random Forest Classifier
+
+A Random Forest Classifier was also trained using balanced class weights and compared with Logistic Regression.
+
+---
+
+## 📈 Model Results
+
+| Model | Accuracy | Precision (Class 1) | Recall (Class 1) | F1-Score (Class 1) |
+|---|---:|---:|---:|---:|
+| Logistic Regression | 72.8% | 0.194 | 0.647 | 0.299 |
+| Random Forest | 90.8% | 0.470 | 0.242 | 0.320 |
+
+---
+
+## 🧠 Model Comparison
+
+### Logistic Regression
+
+Logistic Regression achieved:
+
+- **Accuracy:** 72.8%
+- **Class-1 Precision:** 19.4%
+- **Class-1 Recall:** 64.7%
+- **Class-1 F1-Score:** 29.9%
+
+The model detected a larger proportion of actual class-1 cases, but it also generated more false-positive predictions.
+
+### Random Forest
+
+Random Forest achieved:
+
+- **Accuracy:** 90.8%
+- **Class-1 Precision:** 47.0%
+- **Class-1 Recall:** 24.2%
+- **Class-1 F1-Score:** 32.0%
+
+Random Forest achieved much higher overall accuracy and higher class-1 precision.
+
+However, its lower class-1 recall means that it failed to detect many actual class-1 cases.
+
+Because the dataset is imbalanced, **accuracy alone is not sufficient for evaluating model performance**.
+
+Precision, recall, F1-score, and confusion matrices were therefore also considered.
+
+---
+
+## 🌲 Feature Importance
+
+Random Forest feature importance was used to understand which features contributed most strongly to its predictions.
+
+Some of the most important features were:
+
+1. `Sem_GPA`
+2. `Financial_Stress`
+3. `Work_Hours`
+4. `Attendance`
+5. `Family_Income`
+6. `LMS_Logins`
+7. `Failed_Courses`
+
+This indicates that the model used a combination of:
+
+- Academic performance
+- Financial circumstances
+- Student workload
+- Attendance
+- Learning-platform engagement
+
+when making predictions.
+
+Feature importance represents **predictive contribution and should not be interpreted as proof of causation**.
+
+---
+
+## 🛠️ Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Jupyter Notebook
+
+---
+
+## 📁 Repository Structure
+
+```text
+Module-6-Student-Dropout-Prediction/
+│
+├── Module_6_Student_Dropout_Prediction_Final.ipynb
+├── academic_survival_longitudinal.csv
+└── README.md
+```
+
+> The dataset should only be uploaded to GitHub if its original source/license permits redistribution.
+
+---
+
+## ▶️ How to Run the Project
+
+### 1. Clone or download this repository
+
+### 2. Place the dataset in the project folder
+
+The notebook expects:
+
+```text
+academic_survival_longitudinal.csv
+```
+
+### 3. Install the required libraries
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+```
+
+### 4. Open the Jupyter Notebook
+
+Open:
+
+```text
+Module_6_Student_Dropout_Prediction_Final.ipynb
+```
+
+### 5. Run all cells
+
+Restart the kernel and run the notebook from top to bottom.
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates an end-to-end Data Science workflow for analyzing student academic survival and the dropout target.
+
+The project included data cleaning, EDA, visualization, feature engineering, leakage-aware train-test splitting, Machine Learning, model evaluation, model comparison, and feature-importance analysis.
+
+Random Forest achieved higher overall accuracy, while Logistic Regression achieved substantially higher recall for class 1.
+
+The comparison demonstrates the importance of considering multiple evaluation metrics when working with imbalanced classification datasets.
+
+The models should be considered analytical and predictive tools rather than evidence that particular student characteristics directly cause dropout.
+
+---
+
+## 🚀 Future Improvements
+
+Future improvements could include:
+
+- Hyperparameter tuning
+- Classification threshold tuning
+- Additional techniques for handling class imbalance
+- Group-aware cross-validation
+- Testing additional classification algorithms
+- Model explainability techniques
+- Improving minority-class recall while controlling false positives
+
+---
+
+## 👩‍💻 Author
+
+**Aliya S.**
+
+BCA Student  
+Aspiring Data Scientist | AI/ML Developer
 
