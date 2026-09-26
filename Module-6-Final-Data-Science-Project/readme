@@ -1,1 +1,243 @@
+Student Academic Survival & Dropout Prediction
 
+Overview
+
+This project was developed as the Module 6 Final Data Science
+Project. It analyzes longitudinal student academic data to identify
+patterns associated with the Target_Dropout_Next_Sem variable and
+builds machine learning models for classification.
+
+The project covers the complete data science workflow, including data
+cleaning, exploratory data analysis (EDA), data visualization, feature
+preparation, categorical encoding, leakage-aware train-test splitting,
+machine learning, model evaluation, model comparison, and
+feature-importance analysis.
+
+Project Objective
+
+The objective is to:
+
+Analyze academic, financial, workload, and engagement-related
+student features.
+
+Identify patterns associated with the dropout target.
+
+Build classification models to predict Target_Dropout_Next_Sem.
+
+Compare Logistic Regression and Random Forest performance.
+
+Identify features that contribute most strongly to Random Forest
+predictions.
+
+Dataset
+
+The dataset contains:
+
+79,239 semester-level records
+
+20,000 unique students
+
+Multiple semester records for individual students
+
+An imbalanced target variable:
+
+Class 0: 72,322 records (91.27%)
+
+Class 1: 6,917 records (8.73%)
+
+Because the dataset is longitudinal, Student_ID was used as a grouping
+variable during the train-test split so that records from the same
+student did not appear in both sets.
+
+Dataset source: Add the original public/Kaggle dataset link here
+before publishing the repository.
+
+Project Workflow
+
+Dataset loading and inspection
+
+Missing-value and duplicate checks
+
+Median imputation for Family_Income and LMS_Logins
+
+Target-variable analysis
+
+Exploratory data analysis and visualization
+
+Feature and target selection
+
+Cleaning inconsistent categorical labels
+
+One-hot encoding of Gender and Housing_Status
+
+Group-based train-test split using Student_ID
+
+Logistic Regression training and evaluation
+
+Random Forest training and evaluation
+
+Model comparison
+
+Random Forest feature-importance analysis
+
+Results summary and conclusion
+
+Exploratory Data Analysis
+
+Several variables showed associations with the target.
+
+Some of the notable observations were:
+
+Average Sem_GPA was lower for class 1 than class 0.
+
+Average Financial_Stress was higher for class 1.
+
+Average Failed_Courses was higher for class 1.
+
+Average Work_Hours was higher for class 1.
+
+Average Attendance and LMS_Logins were lower for class 1.
+
+First-generation students had a higher proportion of class-1 records
+in this dataset.
+
+Students with scholarships had a lower proportion of class-1 records
+in this dataset.
+
+These are associations in the analyzed data and should not be
+interpreted as causal relationships.
+
+Machine Learning Models
+
+Two classification models were evaluated:
+
+Logistic Regression
+
+Random Forest Classifier
+
+Because the target is highly imbalanced, balanced class weights were
+used. Performance was evaluated using accuracy, precision, recall,
+F1-score, and confusion matrices rather than accuracy alone.
+
+Model Results
+
+Model              Accuracy      Precision  Recall (Class       F1-Score
+(Class 1)             1)      (Class 1)
+
+Logistic              72.8%          0.194          0.647          0.299
+Regression
+
+Interpretation
+
+Logistic Regression detected a larger proportion of actual class-1
+cases, with 64.7% class-1 recall, but produced more false-positive
+predictions.
+
+Random Forest achieved higher overall accuracy and higher class-1
+precision, but its 24.2% class-1 recall means that many actual
+class-1 cases were missed.
+
+This demonstrates why accuracy alone is not sufficient for evaluating an
+imbalanced classification problem.
+
+Important Predictive Features
+
+Random Forest feature importance showed that the model relied most
+strongly on:
+
+Sem_GPA
+
+Financial_Stress
+
+Work_Hours
+
+Attendance
+
+Family_Income
+
+LMS_Logins
+
+Failed_Courses
+
+Feature importance represents predictive contribution within the Random
+Forest model and does not establish causation.
+
+Technologies Used
+
+Python
+
+Pandas
+
+NumPy
+
+Matplotlib
+
+Seaborn
+
+Scikit-learn
+
+Jupyter Notebook
+
+Repository Structure
+
+Module-6-Student-Dropout-Prediction/
+├── Module_6_Student_Dropout_Prediction_Final.ipynb
+├── academic_survival_longitudinal.csv
+└── README.md
+
+If the dataset's license or source does not allow redistribution, do not
+upload the CSV. Instead, provide the dataset source link and
+instructions for obtaining it.
+
+How to Run
+
+Clone or download this repository.
+
+Place academic_survival_longitudinal.csv in the same directory as
+the notebook.
+
+Install the required Python libraries.
+
+Open Module_6_Student_Dropout_Prediction_Final.ipynb in Jupyter
+Notebook or JupyterLab.
+
+Restart the kernel and run all cells from top to bottom.
+
+Example installation command:
+
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+
+Conclusion
+
+The project demonstrates an end-to-end data science workflow for
+analyzing student academic survival and the dropout target.
+
+Random Forest achieved higher overall accuracy, while Logistic
+Regression achieved substantially higher recall for class 1. The
+comparison highlights the trade-off between identifying more
+minority-class cases and reducing false-positive predictions.
+
+The models should be treated as analytical and predictive tools. Further
+validation and model improvement would be required before considering
+use in a real student-support environment.
+
+Future Improvements
+
+Potential extensions include:
+
+Hyperparameter tuning
+
+Decision-threshold tuning
+
+Additional imbalance-handling techniques
+
+Cross-validation that preserves student-level grouping
+
+Comparison with additional classification algorithms
+
+More detailed model explainability analysis
+
+Author
+
+Aliya S.
+BCA Student | Aspiring Data Scientist / AI & ML Developer
