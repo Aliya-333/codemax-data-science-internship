@@ -52,7 +52,7 @@ Because the dataset contains multiple semester records for the same students, `S
 
 This prevents records belonging to the same student from appearing in both the training and testing datasets.
 
-> **Dataset Source:** Add the original dataset/Kaggle link here.
+> **Dataset Source:** https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data.
 
 ---
 
